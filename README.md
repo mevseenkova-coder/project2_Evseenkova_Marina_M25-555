@@ -29,3 +29,14 @@ poetry run database
 
 >>> Введите команду: drop_table users
 Таблица "users" успешно удалена.
+
+2. База данных
+Запишите аскинему с примером установки пакета, запуска БД, создание, проверку и удаление таблицы. Опубликуйте ее в сервисе и встройте ее в README.md
+{"id":787087,
+"message":"View the recording at:\n\n    https://asciinema.org/a/9UNrKjSpnjCHiCkW\n",
+"description":null,
+"title":"mevseenkova",
+"url":"https://asciinema.org/a/9UNrKjSpnjCHiCkW",
+"audio_url":null,
+"visibility":"unlisted",
+"file_url":"https://asciinema.org/a/9UNrKjSpnjCHiCkW.cast"}

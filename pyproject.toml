@@ -12,18 +12,16 @@ dependencies = [
     "prompt-toolkit (>=3.0.52,<4.0.0)"
 ]
 
-[project.scripts]
-project = "src.primitive_db.main:main"
-database = "src.primitive_db.main:main"
+# [project.scripts]
+# project = "src.primitive_db.main:main"
+# database = "src.primitive_db.main:main"
 
 [tool.poetry]
-packages = [
+packages = [{ include = "primitive_db", from = "src" }]
 
-    { include = "primitive_db", from = "src" }
-
-]
-
-# project = "src.primitive_db.main:main" 
+[tool.poetry.scripts]
+project = "primitive_db.main:main"
+database = "primitive_db.main:main"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.14.4"
