@@ -50,36 +50,6 @@ def print_table(data, columns):
         table.add_row([row.get(col, "") for col in columns])
     print(table)
 
-'''
-def parse_where_clause(condition_str):
-    condition_str = condition_str.strip()
-    if not condition_str:
-        return None
-    if " = " not in condition_str:
-        raise ValueError(f"Неверный формат условия: {condition_str}")
-    key, raw_value = condition_str.split(" = ", 1)
-    key = key.strip()
-    raw_value = raw_value.strip()
-
-    if raw_value.lower() == "true":
-        value = True
-    elif raw_value.lower() == "false":
-        value = False
-    elif raw_value.isdigit() or (raw_value.startswith('-') and raw_value[1:].isdigit()):
-        value = int(raw_value)
-    elif '.' in raw_value:
-        try:
-            value = float(raw_value)
-        except:
-            value = raw_value
-    elif (raw_value.startswith('"') and raw_value.endswith('"')) or \
-         (raw_value.startswith("'") and raw_value.endswith("'")):
-        value = raw_value[1:-1]
-    else:
-        value = raw_value
-    return {key: value}
-'''
-
 
 def parse_where_clause(condition_str):
     """Разбирает условие вида 'name=Alice' или 'age=25' (с или без пробелов)"""
@@ -114,55 +84,6 @@ def parse_where_clause(condition_str):
         value = value_str  # строка без кавычек
 
     return {key: value}
-
-
-'''
-def parse_set_clause(set_str):
-    set_str = set_str.strip()
-    if not set_str:
-        return {}
-    parts = []
-    part = ""
-    in_quotes = False
-    for char in set_str:
-        if char in ('"', "'"):
-            in_quotes = not in_quotes
-        if char == ',' and not in_quotes:
-            parts.append(part)
-            part = ""
-        else:
-            part += char
-    parts.append(part)
-
-    result = {}
-    for part in parts:
-        part = part.strip()
-        if " = " not in part:
-            raise ValueError(f"Неверный формат в set: {part}")
-        key, raw_value = part.split(" = ", 1)
-        key = key.strip()
-        raw_value = raw_value.strip()
-
-        if raw_value.lower() == "true":
-            value = True
-        elif raw_value.lower() == "false":
-            value = False
-        elif raw_value.isdigit() or (raw_value.startswith('-') \
-                and raw_value[1:].isdigit()):
-            value = int(raw_value)
-        elif '.' in raw_value:
-            try:
-                value = float(raw_value)
-            except:
-                value = raw_value
-        elif (raw_value.startswith('"') and raw_value.endswith('"')) or \
-             (raw_value.startswith("'") and raw_value.endswith("'")):
-            value = raw_value[1:-1]
-        else:
-            value = raw_value
-        result[key] = value
-    return result
-'''
 
 
 def parse_set_clause(set_str):
@@ -264,20 +185,6 @@ def run():
                         save_metadata(data=metadata)
 
             # === INSERT INTO ===
-                '''
-                elif cmd == "insert" and len(args) > 1 and args[1] == "into":
-                    if len(args) < 5 or args[3] != "values":
-                        print("Пример: insert into users values (\"Alice\", 30)")
-                        continue
-                    table_name = args[2]
-                    values_str = args[4]  # "(\"Alice\", 30)"
-                    if values_str.startswith("(") and values_str.endswith(")"):
-                        values_str = values_str[1:-1]
-                    values = [v.strip() for v in values_str.split(",") if v.strip()]
-                    result = insert(metadata, table_name, values)
-                    print(result)
-                '''
-
             elif cmd == "insert" and len(args) > 1 and args[1] == "into":
                 if len(args) < 3:
                     print("Использование: insert into <таблица> values (...)")
