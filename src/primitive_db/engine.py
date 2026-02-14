@@ -105,7 +105,7 @@ def parse_where_clause(condition_str):
     elif '.' in value_str:
         try:
             value = float(value_str)
-        except:
+        except ValueError:
             value = value_str.strip('"').strip("'")
     elif (value_str.startswith('"') and value_str.endswith('"')) or \
          (value_str.startswith("'") and value_str.endswith("'")):
@@ -147,7 +147,8 @@ def parse_set_clause(set_str):
             value = True
         elif raw_value.lower() == "false":
             value = False
-        elif raw_value.isdigit() or (raw_value.startswith('-') and raw_value[1:].isdigit()):
+        elif raw_value.isdigit() or (raw_value.startswith('-') \
+                and raw_value[1:].isdigit()):
             value = int(raw_value)
         elif '.' in raw_value:
             try:
@@ -200,12 +201,12 @@ def parse_set_clause(set_str):
             value = True
         elif value_str.lower() == "false":
             value = False
-        elif value_str.isdigit() or (value_str.startswith('-') and value_str[1:].isdigit()):
+        elif value_str.isdigit() or (value_str.startswith('-') and value_str[1:].isdigit()): # noqa: E501
             value = int(value_str)
         elif '.' in value_str:
             try:
                 value = float(value_str)
-            except:
+            except ValueError:
                 value = value_str.strip('"').strip("'")
         elif (value_str.startswith('"') and value_str.endswith('"')) or \
              (value_str.startswith("'") and value_str.endswith("'")):
@@ -286,7 +287,8 @@ def run():
                 # Ищем "values" и всё, что после
                 try:
                     values_index = user_input.lower().index("values")
-                    values_part = user_input[values_index + 6:].strip()  # "values" = 6 символов
+                    # "values" = 6 символов
+                    values_part = user_input[values_index + 6:].strip()
                     if values_part.startswith("(") and values_part.endswith(")"):
                         values_part = values_part[1:-1]
                     # Разбиваем вручную, учитывая кавычки
@@ -383,7 +385,7 @@ def run():
                         t = metadata["tables"][table_name]
                         cols = ", ".join([f"{k}:{v}" for k, v in t["columns"].items()])
                         data = load_table_data(table_name)
-                        print(f"Таблица: {table_name}\nСтолбцы: {cols}\nЗаписей: {len(data)}")
+                        print(f"Таблица: {table_name}\nСтолбцы: {cols}\nЗаписей: {len(data)}") # noqa: E501
 
             # === HELP / EXIT ===
             elif cmd == "help":
