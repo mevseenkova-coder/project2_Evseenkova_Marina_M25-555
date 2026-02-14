@@ -1,0 +1,13 @@
+{
+  "tables": {
+    "users": {
+      "columns": {
+        "ID": "int",
+        "name": "str",
+        "age": "int",
+        "active": "bool"
+      },
+      "data": []
+    }
+  }
+}
