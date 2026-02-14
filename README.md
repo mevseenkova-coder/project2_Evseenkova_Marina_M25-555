@@ -40,3 +40,28 @@ poetry run database
 "audio_url":null,
 "visibility":"unlisted",
 "file_url":"https://asciinema.org/a/9UNrKjSpnjCHiCkW.cast"}
+
+***Операции с данными***
+
+Функции:
+<command> insert into <имя_таблицы> values (<значение1>, <значение2>, ...) - создать запись.
+<command> select from <имя_таблицы> where <столбец> = <значение> - прочитать записи по условию.
+<command> select from <имя_таблицы> - прочитать все записи.
+<command> update <имя_таблицы> set <столбец1> = <новое_значение1> where <столбец_условия> = <значение_условия> - обновить запись.
+<command> delete from <имя_таблицы> where <столбец> = <значение> - удалить запись.
+<command> info <имя_таблицы> - вывести информацию о таблице.
+<command> exit - выход из программы
+<command> help- справочная информация
+
+>>>Введите команду: _ 
+
+3. Адаптируем модуль “База данных”
+Обновите README.md. Добавьте раздел "CRUD-операции" с описанием новых команд. Запишите asciinema с демонстрацией всех операций и вставьте ее в README.md.
+{"id":788118,
+"message":"View the recording at:\n\n    https://asciinema.org/a/ct90LTSegIrsGmlw\n",
+"description":null,
+"title":"mevseenkova",
+"url":"https://asciinema.org/a/ct90LTSegIrsGmlw",
+"visibility":"unlisted",
+"audio_url":null,
+"file_url":"https://asciinema.org/a/ct90LTSegIrsGmlw.cast"}
