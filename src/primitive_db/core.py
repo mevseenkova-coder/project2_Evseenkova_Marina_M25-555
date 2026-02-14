@@ -93,6 +93,7 @@ def insert(metadata: Dict, table_name: str, values: List[str]) -> str:
     return f"Запись с ID={new_id} успешно добавлена в таблицу '{table_name}'."
 '''
 
+'''
 @handle_db_errors
 @log_time
 def insert(metadata: Dict[str, Any], table_name: str, values: List[str]) -> str:
@@ -161,6 +162,67 @@ def insert(metadata: Dict[str, Any], table_name: str, values: List[str]) -> str:
     data.append(new_row)
     save_table_data(table_name, data)
 
+    return f"Запись с ID={new_id} успешно добавлена в таблицу '{table_name}'."
+'''
+
+@handle_db_errors
+@log_time
+def insert(
+    metadata: Dict[str, Any], table_name: str, values: List[str]
+) -> str:
+    """
+    Добавляет новую запись в таблицу.
+    ...
+    """
+    if table_name not in metadata["tables"]:
+        return f"Ошибка: таблица '{table_name}' не существует."
+
+    table = metadata["tables"][table_name]
+    columns = table["columns"]
+
+    # Ожидаем len(columns) - 1 значений (без ID)
+    expected_cols = len(columns) - 1
+    if len(values) != expected_cols:
+        return (
+            f"Ошибка: ожидается {expected_cols} значений, "
+            f"получено {len(values)}."
+        )
+
+    from primitive_db.utils import load_table_data, save_table_data
+    data = load_table_data(table_name)
+
+    new_id = max((row["ID"] for row in data), default=0) + 1
+    new_row = {"ID": new_id}
+
+    value_index = 0
+    for col_name, col_type in columns.items():
+        if col_name == "ID":
+            continue
+
+        raw_value = values[value_index]
+        value_index += 1
+
+        try:
+            if col_type == "int":
+                # Удаляем кавычки и преобразуем в число
+                cleaned = raw_value.strip('"').strip("'")
+                new_row[col_name] = int(cleaned)
+            elif col_type == "bool":
+                cleaned = raw_value.strip('"').strip("'").lower()
+                new_row[col_name] = cleaned in ("true", "1", "yes")
+            else:  # str
+                # Для строк удаляем кавычки
+                new_row[col_name] = raw_value.strip('"').strip("'")
+        except ValueError as e:
+            return (
+                f"Ошибка: значение '{raw_value}' не соответствует типу "
+                f"'{col_type}' для столбца '{col_name}'. Детали: {e}"
+            )
+        except Exception as e:
+            return f"Ошибка обработки значения '{raw_value}'. Детали: {e}"
+
+    data.append(new_row)
+    save_table_data(table_name, data)
     return f"Запись с ID={new_id} успешно добавлена в таблицу '{table_name}'."
 
 

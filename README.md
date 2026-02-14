@@ -65,3 +65,26 @@ poetry run database
 "visibility":"unlisted",
 "audio_url":null,
 "file_url":"https://asciinema.org/a/ct90LTSegIrsGmlw.cast"}
+
+4. Декораторы и замыкания
+Финальное README.md и asciinema. 
+Обновите README.md, добавив информацию о новых возможностях (обработка ошибок, подтверждение действий).
+Запишите финальную asciinema, демонстрирующую работу декораторов (например, запрос на подтверждение удаления).
+{"id":788133,
+"message":"View the recording at:\n\n    https://asciinema.org/a/AYr31TxVFQPlkufQ\n",
+"description":null,
+"title":"mevseenkova",
+"url":"https://asciinema.org/a/AYr31TxVFQPlkufQ",
+"visibility":"unlisted",
+"audio_url":null,
+"file_url":"https://asciinema.org/a/AYr31TxVFQPlkufQ.cast"}
+
+продолжение:
+{"id":788136,
+"message":"View the recording at:\n\n    https://asciinema.org/a/iUTWR9fuds2gnsaJ\n",
+"description":null,
+"title":"mevseenkova",
+"url":"https://asciinema.org/a/iUTWR9fuds2gnsaJ",
+"visibility":"unlisted",
+"audio_url":null,
+"file_url":"https://asciinema.org/a/iUTWR9fuds2gnsaJ.cast"}
