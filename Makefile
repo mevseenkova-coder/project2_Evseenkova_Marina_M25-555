@@ -15,3 +15,6 @@ package-install:
     
 make lint:
     poetry run ruff check .
+
+make run:
+    poetry run database

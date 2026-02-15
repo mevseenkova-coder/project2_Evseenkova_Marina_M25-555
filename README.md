@@ -5,6 +5,25 @@
 
 Простая CLI-база данных с поддержкой таблиц и персистентности.
 
+Инструкции по установке (poetry install или make install) и запуску (poetry run project или make project).
+Чтобы установить poetry, напишите команду sudo apt install python3-poetry
+Активируйте виртуальное окружение командами: poetry env activate
+После этого у вас в терминале появится что то похожее (только с вашими данными, ниже это пример!):
+C:\Users\пользователь\projects\github\project2_Evseenkova_Marina_M25-555\project2_Evseenkova_Marina_M25-555\.venv\Scripts\activate.ps1
+
+Чтобы запустить poetry, напишите команду poetry run python -m src.primitive_db.main 
+Альтернативный вариант:
+    Выполните установку пакета с помощью команды: poetry install 
+    Poetry создаст виртуальное окружение и установит в него пакет.
+    После успешной установки пакета проверьте, что скрипт работает: poetry run project
+    Альтернативный скрипт для запуска проекта - poetry run database или make run
+
+poetry install создаёт виртуальное окружение и устанавливает зависимости из pyproject.toml.
+make install — это удобная оболочка для poetry install, если в проекте есть Makefile.
+
+poetry run project активирует виртуальное окружение и запускает команду.
+make project — это ярлык для poetry run project, если в Makefile определена соответствующая команда.
+
 ## Управление таблицами
 Проект реализует:
 Управление таблицами (create_table, drop_table, list_tables).
