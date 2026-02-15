@@ -208,4 +208,5 @@ __marimo__/
 
 # User data
 db_meta.json
-data/
+.db_meta.json
+.data/
